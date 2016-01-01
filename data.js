@@ -1,5 +1,5 @@
 
-module.exports.nodes:[
+module.exports.nodes=[
 
   { from:'New York',      to:'Chicago',      distance:  900 },
   { from:'New York',      to:'Toronto',      distance:  500 },

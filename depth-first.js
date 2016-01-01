@@ -8,6 +8,7 @@
 
 (function () {
 var _ = require('underscore');
+var data = require('./data');
 
 var waypoint = function( data ) {
   var obj = Object.create(waypoint.prototype);
@@ -114,11 +115,6 @@ depth.prototype.route = function(df, dt) {
 };
 
 
-
-
-
-
-
 var NY = 'New York';
 var CH = 'Chicago';
 var TO = 'Toronto';
@@ -131,19 +127,21 @@ var DE = 'Denver';
 
 
 depth.prototype.setup = function() {
-  this.waypoints.push(waypoint({from:NY,   to:CH, distance:900}));
-  this.waypoints.push(waypoint({from:CH,   to:DE, distance:1000}));
-  this.waypoints.push(waypoint({from:NY,   to:TO, distance:500}));
-  this.waypoints.push(waypoint({from:NY,   to:DE, distance:1800}));
-  this.waypoints.push(waypoint({from:TO,   to:CA, distance:1700}));
-  this.waypoints.push(waypoint({from:TO,   to:LA, distance:2500}));
-  this.waypoints.push(waypoint({from:TO,   to:CH, distance:500}));
-  this.waypoints.push(waypoint({from:DE,   to:UR, distance:1000}));
-  this.waypoints.push(waypoint({from:DE,   to:HO, distance:1000}));
-  this.waypoints.push(waypoint({from:HO,   to:LA, distance:1500}));
-  this.waypoints.push(waypoint({from:DE,   to:LA, distance:1000}));
+  for (var i=0;i<data.nodes.length;i++) {
+    this.waypoints.push(waypoint(data.nodes[i]));
+  }
+  // this.waypoints.push(waypoint({from:NY,   to:CH, distance:900}));
+  // this.waypoints.push(waypoint({from:CH,   to:DE, distance:1000}));
+  // this.waypoints.push(waypoint({from:NY,   to:TO, distance:500}));
+  // this.waypoints.push(waypoint({from:NY,   to:DE, distance:1800}));
+  // this.waypoints.push(waypoint({from:TO,   to:CA, distance:1700}));
+  // this.waypoints.push(waypoint({from:TO,   to:LA, distance:2500}));
+  // this.waypoints.push(waypoint({from:TO,   to:CH, distance:500}));
+  // this.waypoints.push(waypoint({from:DE,   to:UR, distance:1000}));
+  // this.waypoints.push(waypoint({from:DE,   to:HO, distance:1000}));
+  // this.waypoints.push(waypoint({from:HO,   to:LA, distance:1500}));
+  // this.waypoints.push(waypoint({from:DE,   to:LA, distance:1000}));
 };
-
 
 module.exports.depth = depth;
 // ------------------------------------------------------------------
@@ -157,11 +155,8 @@ var main = function() {
   ob.setup();
   from = 'New York';
   to = 'Los Angeles';
-  //to = 'Urbana';
-  // console.log('bstack = '+ob.matchstack.length);
   ob.isWaypoint(from, to);
   if (ob.matchstack.length !== 0) ob.route(from, to);
-  // else console.log('Nothing in matchstack');
 };
 
 }());

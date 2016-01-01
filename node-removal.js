@@ -25,7 +25,7 @@ var main = function() {
   var ob = node_r();
   ob.setup();
   from = 'New York';
-  to = 'Los Angeles';
+  to = 'Dulles';
   //to = 'Urbana';
   // console.log('bstack = '+ob.matchstack.length);
   var done= false;
