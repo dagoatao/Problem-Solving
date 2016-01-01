@@ -1,0 +1,31 @@
+
+module.exports.nodes:[
+
+  { from:'New York',      to:'Chicago',      distance:  900 },
+  { from:'New York',      to:'Toronto',      distance:  500 },
+  { from:'New York',      to:'Deleware',     distance: 1800 },
+  { from:'New York',      to:'Philadelphia', distance:  100 },
+  { from:'New York',      to:'Dallas',       distance: 1300 },
+  { from:'New York',      to:'Seattle',      distance: 2700 },
+  { from:'New York',      to:'Deleware',     distance: 1800 },
+  { from:'Chicago',       to:'Deleware',     distance: 1000 },
+  { from:'Toronto',       to:'Calgary',      distance: 1700 },
+  { from:'Toronto',       to:'Los Angeles',  distance: 2500 },
+  { from:'Toronto',       to:'Chicago',      distance:  500 },
+  { from:'Toronto',       to:'Philadelphia', distance:  500 },
+  { from:'Deleware',      to:'Urbana',       distance: 1000 },
+  { from:'Deleware',      to:'Houston',      distance: 1000 },
+  { from:'Deleware',      to:'Philadelphia', distance:   50 },
+  { from:'Houston',       to:'Los Angeles',  distance: 1500 },
+  { from:'Houston',       to:'Dallas',       distance: 1500 },
+  { from:'Houston',       to:'Dulles',       distance: 1500 },
+  { from:'Houston',       to:'El Segundo',   distance: 1500 },
+  { from:'Deleware',      to:'Mexico City',  distance: 1000 },
+  { from:'Deleware',      to:'Miami',        distance: 800  },
+  { from:'Miami',         to:'New York',     distance: 800  },
+  { from:'Miami',         to:'Dulles',       distance: 800  },
+  { from:'Miami',         to:'Dallas',       distance: 800  },
+  { from:'Miami',         to:'Chicago',      distance: 800  },
+  { from:'Miami',         to:'Columbus',     distance: 800  },
+
+];

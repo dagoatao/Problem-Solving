@@ -5,6 +5,8 @@
 // by Michael Colon
 //
 //
+
+(function () {
 var _ = require('underscore');
 
 var waypoint = function( data ) {
@@ -26,7 +28,9 @@ var waypoint = function( data ) {
   ? data.skip
   : false;
   return obj;
-}
+};
+
+module.exports.waypoint = waypoint;
 
 var depth = function() {
   var obj = Object.create(depth.prototype);
@@ -39,31 +43,31 @@ var depth = function() {
 
 depth.prototype.isWaypointMax = function() {
   return (this.waypoints.length > this.max);
-}
+};
 
 depth.prototype.match = function(properties) {
   distance = 0;
-  _.each(this.waypoints, function(obj) {
-    if(obj.skip === false && _.isMatch(obj,properties) === true) {
-      obj.skip = true;      // prevent reuse
-      distance = obj.distance;  // return waypoint distance
+  for (i=0;i<this.waypoints.length;i++) {
+    if (this.waypoints[i].skip === false && this.waypoints[i].from === properties.from && this.waypoints[i].to === properties.to) {
+      this.waypoints[i].skip = true;      // prevent reuse
+      distance = this.waypoints[i].distance;  // return waypoint distance
       return distance;
     }
-  });
-  return distance;
+  }
+  return 0;
 };
 
 depth.prototype.find = function(from) {
   f = undefined;
-  _.each(this.waypoints, function(item) {
-    if (item.skip === false && item.from === from) {
-      item.skip = true;
-      f = waypoint({from:item.from, to:item.to, distance:item.distance});
+  for (i = 0; i<this.waypoints.length;i++) {
+    if (this.waypoints[i].skip === false && this.waypoints[i].from === from) {
+      this.waypoints[i].skip = true;
+      f = waypoint({from:this.waypoints[i].from, to:this.waypoints[i].to, distance:this.waypoints[i].distance});
       return f;
     }
-  });
+  }
   return f;
-}
+};
 
 depth.prototype.isWaypoint = function(df, dt) {
   // console.log('Is there a waypoint from %s to %s?', df, dt);
@@ -81,7 +85,8 @@ depth.prototype.isWaypoint = function(df, dt) {
   obj = this.find(df);
   // if not present add it and find next node. Or pop next waypoint and search next node.
   if (obj !== undefined) {
-    this.matchstack.push(waypoint({from:obj.from, to:obj.to, distance:obj.distance}));
+    this.matchstack.push(waypoint({from:df, to:dt, distance:obj.distance}));
+    // this.matchstack.push(waypoint({from:obj.from, to:obj.to, distance:obj.distance}));
     // console.log('Found this %s, %s, %s', obj.from, obj.to, obj.distance);
     this.isWaypoint(obj.to, dt);
   } else if (this.matchstack.length > 0) {
@@ -97,13 +102,15 @@ depth.prototype.route = function(df, dt) {
     reversed.push(item);
   });
   var shortestpath = 0;
+  var output = 'From: ';
   console.log('\n\nYour waypoint & connections to: %s', dt);
   console.log('----------------------------------------');
   _.each(reversed, function(item) {
     shortestpath += item.distance;
-    console.log('From: %s, To: %s, distance: %s', item.from, item.to, item.distance);
+    output += item.from+' to ';
   });
-  console.log('The path chosen from %s to %s was calculated at %s miles.', df, dt, shortestpath);
+  output+=''+dt;
+  console.log(output+' with distance '+shortestpath);
 };
 
 
@@ -112,29 +119,37 @@ depth.prototype.route = function(df, dt) {
 
 
 
-
+var NY = 'New York';
+var CH = 'Chicago';
+var TO = 'Toronto';
+var CA = 'Calgary';
+var LA = 'Los Angeles';
+var UR = 'Urbana';
+var HO = 'Houston';
+var DE = 'Denver';
 
 
 
 depth.prototype.setup = function() {
-  this.waypoints.push(waypoint({from:'New York',to:'Chicago', distance:900}));
-  this.waypoints.push(waypoint({from:'New York',to:'Toronto', distance:500}));
-  this.waypoints.push(waypoint({from:'New York',to:'Denver', distance:1800}));
-  this.waypoints.push(waypoint({from:'Chicago',to:'Denver', distance:1000}));
-  this.waypoints.push(waypoint({from:'Toronto',to:'Calgary', distance:1700}));
-  this.waypoints.push(waypoint({from:'Toronto',to:'Los Angeles', distance:2500}));
-  this.waypoints.push(waypoint({from:'Toronto',to:'Chicago', distance:500}));
-  this.waypoints.push(waypoint({from:'Denver',to:'Urbana', distance:1000}));
-  this.waypoints.push(waypoint({from:'Denver',to:'Los Angeles', distance:100}));
-  this.waypoints.push(waypoint({from:'Denver',to:'Toronto', distance:1000}));
+  this.waypoints.push(waypoint({from:NY,   to:CH, distance:900}));
+  this.waypoints.push(waypoint({from:CH,   to:DE, distance:1000}));
+  this.waypoints.push(waypoint({from:NY,   to:TO, distance:500}));
+  this.waypoints.push(waypoint({from:NY,   to:DE, distance:1800}));
+  this.waypoints.push(waypoint({from:TO,   to:CA, distance:1700}));
+  this.waypoints.push(waypoint({from:TO,   to:LA, distance:2500}));
+  this.waypoints.push(waypoint({from:TO,   to:CH, distance:500}));
+  this.waypoints.push(waypoint({from:DE,   to:UR, distance:1000}));
+  this.waypoints.push(waypoint({from:DE,   to:HO, distance:1000}));
+  this.waypoints.push(waypoint({from:HO,   to:LA, distance:1500}));
+  this.waypoints.push(waypoint({from:DE,   to:LA, distance:1000}));
 };
 
 
-
+module.exports.depth = depth;
 // ------------------------------------------------------------------
-
-
-
+// Depth-first test
+//
+// ------------------------------------------------------------------
 var main = function() {
   var to ='';
   var from ='';
@@ -149,4 +164,4 @@ var main = function() {
   // else console.log('Nothing in matchstack');
 };
 
-main();
+}());

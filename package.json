@@ -7,5 +7,26 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Michael Colon",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcolonj/problem-solving.git"
+  },
+  "keywords": [
+    "ai",
+    "search",
+    "depth",
+    "breadth",
+    "heuristics",
+    "analysis",
+    "javascript",
+    "nodejs",
+    "node.js",
+    "js",
+    "prototype"
+  ],
+  "bugs": {
+    "url": "https://github.com/mcolonj/problem-solving/issues"
+  },
+  "homepage": "https://github.com/mcolonj/problem-solving#readme"
 }
