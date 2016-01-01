@@ -18,11 +18,8 @@ optimal.prototype.route = function(from, to) {
 
   for (var i = 0;i<this.matchstack.length;i++) {
     var waypoint = this.matchstack.pop();
-    // reverse and calculate distance.
-    // if (waypoint) {
       temp.push(waypoint);
       distance +=  waypoint.distance;
-    // }
   }
   // save current route distance as minDist and save route as optimal.
   if (this.minDist > distance) {
@@ -38,8 +35,7 @@ var main = function() {
   ob.setup();
   from = 'New York';
   to = 'Los Angeles';
-  //to = 'Urbana';
-  // console.log('bstack = '+ob.matchstack.length);
+
   var done= false;
   do {
     ob.isWaypoint(from, to);
@@ -61,7 +57,6 @@ var main = function() {
     console.log('Optimal solutions is:');
     console.log(output+to+' with distance '+ ob.minDist);
   }
-  console.log(ob.waypoints);
 };
 
 main();
