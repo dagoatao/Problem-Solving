@@ -27,7 +27,7 @@
 
   var text = 'once a pon a time in thug land.';
   console.log('\n');
-  console.log('Huffman coding for words in text.');
+  console.log('\033[32mHuffman coding for words in text: \033[36m%s\033[37m', text);
   var code = a.HuffmanCodeWords(0);
   var wordhash = code.frequencyWordHash(text.replace('.',' .'));
   var wordTree = code.buildTree(wordhash);
@@ -39,7 +39,7 @@
   console.log(replacer.text);
 
   console.log('\n');
-  console.log('Huffman coding for characters in text.');
+  console.log('\033[32mHuffman coding for characters in text: \033[36m%s\033[37m', text);
   var code = b.HuffmanCode(0);
   var hash = code.frequencyCharacterHash(text);
   var tree = code.buildTree(hash);
