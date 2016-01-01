@@ -7,7 +7,7 @@
 //
 
 (function () {
-var _ = require('underscore');
+// var _ = require('underscore');
 var data = require('./data');
 
 var waypoint = function( data ) {
@@ -99,14 +99,14 @@ depth.prototype.isWaypoint = function(df, dt) {
 
 depth.prototype.route = function(df, dt) {
   reversed = [];
-  _.each(this.matchstack, function(item) {
+  this.matchstack.forEach(function(item) {
     reversed.push(item);
   });
   var shortestpath = 0;
   var output = 'From: ';
   console.log('\n\nYour waypoint & connections to: %s', dt);
   console.log('----------------------------------------');
-  _.each(reversed, function(item) {
+  reversed.forEach(function(item) {
     shortestpath += item.distance;
     output += item.from+' to ';
   });
