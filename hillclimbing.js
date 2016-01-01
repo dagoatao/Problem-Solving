@@ -22,10 +22,10 @@ hillclimber.prototype.find = function(from) {
 };
 
 
-var main3 = function() {
-
-    var to ='';
-    var from ='';
+var hillclimbing = function() {
+    console.log('\n\n------------------------------')
+    console.log('Hill Climbing Search');
+    console.log('------------------------------')
     var ob = hillclimber();
     ob.setup();
     from = 'New York';
@@ -34,4 +34,4 @@ var main3 = function() {
     if (ob.matchstack.length !== 0) ob.route(from, to);
 };
 
-main3();
+hillclimbing();
