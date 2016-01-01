@@ -20,6 +20,10 @@ node_r.prototype.remove = function(waypoint) {
 
 
 var main = function() {
+  console.log('\n\n------------------------------')
+  console.log('Node Removal Search');
+  console.log('------------------------------')
+
   var to ='';
   var from ='';
   var ob = node_r();

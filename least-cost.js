@@ -1,6 +1,5 @@
+;(function () {
 var depth = require('./depth-first');
-
-
 var leastcost = depth.depth;
 var waypoint = depth.waypoint;
 
@@ -25,19 +24,18 @@ leastcost.prototype.find = function(from) {
 
 }
 
-
-var main = function() {
-  var to ='';
-  var from ='';
+var least_cost = function() {
+  console.log('\n\n------------------------------')
+  console.log('Least Cost Search');
+  console.log('------------------------------')
   var ob = leastcost();
   ob.setup();
   from = 'New York';
   to = 'Los Angeles';
-  //to = 'Urbana';
-  // console.log('bstack = '+ob.matchstack.length);
   ob.isWaypoint(from, to);
   if (ob.matchstack.length !== 0) ob.route(from, to);
-  // else console.log('Nothing in matchstack');
 };
 
-main();
+least_cost();
+
+}());

@@ -1,6 +1,9 @@
 var depth = require('./depth-first');
 
 var main = function() {
+  console.log('\n\n------------------------------')
+  console.log('Path Removal Search');
+  console.log('------------------------------')
   var to ='';
   var from ='';
   var ob = depth.depth();

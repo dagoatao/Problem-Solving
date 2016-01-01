@@ -52,7 +52,9 @@ breadth.prototype.isWaypoint = function(df, dt) {
 };
 
 var main2 = function() {
-
+  console.log('\n\n------------------------------')
+    console.log('Breadth First Search');
+    console.log('------------------------------')
     var to ='';
     var from ='';
     var ob = breadth();
@@ -65,6 +67,5 @@ var main2 = function() {
     // console.log(ob.matchstack);
     if (ob.matchstack.length !== 0) ob.route(from, to);
     // else console.log('Nothing in matchstack');
-
 };
 main2();

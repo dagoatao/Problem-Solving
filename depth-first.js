@@ -6,7 +6,8 @@
 //
 //
 
-(function () {
+;(function () {
+
 var data = require('./data');
 
 var waypoint = function( data ) {
@@ -103,7 +104,7 @@ depth.prototype.route = function(df, dt) {
   });
   var shortestpath = 0;
   var output = 'From: ';
-  console.log('\n\nYour waypoint & connections to: %s', dt);
+  console.log('\nYour waypoint & connections to: %s', dt);
   console.log('----------------------------------------');
   reversed.forEach(function(item) {
     shortestpath += item.distance;
@@ -148,6 +149,9 @@ module.exports.depth = depth;
 //
 // ------------------------------------------------------------------
 var main = function() {
+  console.log('\n\n------------------------------')
+  console.log('Depth First Search');
+  console.log('------------------------------')
   var to ='';
   var from ='';
   var ob = depth();
@@ -157,5 +161,5 @@ var main = function() {
   ob.isWaypoint(from, to);
   if (ob.matchstack.length !== 0) ob.route(from, to);
 };
-
+main();
 }());

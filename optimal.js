@@ -29,8 +29,10 @@ optimal.prototype.route = function(from, to) {
 };
 
 var main = function() {
-  var to ='';
-  var from ='';
+
+  console.log('\n\n------------------------------')
+  console.log('Optimal Search');
+  console.log('------------------------------')
   var ob = optimal();
   ob.setup();
   from = 'New York';
