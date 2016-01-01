@@ -7,7 +7,6 @@
 //
 
 (function () {
-// var _ = require('underscore');
 var data = require('./data');
 
 var waypoint = function( data ) {
